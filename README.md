@@ -2,7 +2,8 @@
 
 👋 Hey there, I'm Marilène! Let me tell you a bit about me!
 
-I'm a **junior web developer** and I live in France.
+I'm a **junior web developer** and I live in France.<br>
+In short: nature & animal lover <3. Striving to live a simple & healthy life! 
 
 ### Let me tell you a bit about me:
 If I was an animal, I would be... a turtle!<br>
@@ -24,3 +25,6 @@ If I was a color, I would be... green!<br>
 
 ### Contact:
 khieu.marilene@gmail.com
+
+### Portfolio:
+https://marilenekhieu.herokuapp.com
