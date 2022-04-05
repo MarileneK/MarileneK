@@ -1,0 +1,50 @@
+# 1. On indique ici la version de docker-compose
+version: '3.3'
+
+# 2. Ici, on va lister l'ensemble des services (= nos containers)
+services:
+
+    # 2.1. On déclare un container qui sera nommé mariadb
+    mariadb:
+        image: mariadb:10.1
+        container_name: mariadb
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            # MYSQL_DATABASE & MYSQL_USER : Mieux veut ne pas mettre le même nom pr la DB et pour le user
+            # MYSQL_PASSWORD : Mieux vaut mettre un MDP plus complexe
+            MYSQL_ROOT_PASSWORD: root_password
+            MYSQL_DATABASE: espocrm
+            MYSQL_USER: espocrm
+            MYSQL_PASSWORD: database_password
+        # Intérêt du volune : dossier local à notre hôte et qui va remonter dans le conteneur
+        # L'idée est de faire persister les données
+        # Externaliser les données du conteneur et va nous permettre de persister les données qui devraient normalement s'enregistrer dans le conteneur
+        volumes:
+            - mariadbData:/var/lib/mysql
+        # Comportement que doit avoir le conteneur
+        # Conteneur ne redémarre pas automatiquement si on redémarre le système/le PC, on va donc lui dire de redémarrer
+        restart: always
+
+    # 4. Création d'une 2e conteneur
+    espocrm:
+        image: nrameloclock/espocrm
+        container_name: espocrm
+        ports:
+            - 81:80
+        environment:
+            # Variables d'env qui va créer fichier de config de la DB
+            # Fait ref à notre serveur mariadb
+            ESPOCRM_DATABASE_HOST: mariadb
+            ESPOCRM_DATABASE_USER: espocrm
+            ESPOCRM_DATABASE_PASSWORD: database_password
+            # Définit nom d'utilistaeur et mdp par défaut pour l'initilisation lorsque l'on va démarrer notre conteneur
+            ESPOCRM_ADMIN_USERNAME: admin
+            ESPOCRM_ADMIN_PASSWORD: password
+        volumes:
+            - espocrmData:/var/www/html
+        restart: always
+        
+# 3. Docker s'occupe de créer le dossier tout seul et va utiliser le driver de Docker par défaut.
+volumes:
+    mariadbData:
+    espocrmData:
