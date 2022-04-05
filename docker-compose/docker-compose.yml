@@ -43,6 +43,8 @@ services:
         volumes:
             - espocrmData:/var/www/html
         restart: always
+        links:
+            - mariadb:mariadb
         
 # 3. Docker s'occupe de créer le dossier tout seul et va utiliser le driver de Docker par défaut.
 volumes:
