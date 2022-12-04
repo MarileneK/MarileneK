@@ -8,6 +8,3 @@ I am a nature & animal lover <3 and I am striving to live a simple & healthy lif
 ### Let's talk!
 khieu.marilene@gmail.com<br>
 https://www.linkedin.com/in/marilenekhieu
-
-### Here's the link to my little portfolio:
-https://marilenek.github.io/marilenekhieu
