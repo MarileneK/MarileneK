@@ -1,5 +1,3 @@
-# Marilène Khieu
-
 👋 Hey there, I'm Marilène.
 
 I'm a **freelance webmarketing consultant** and I live in France.<br>
